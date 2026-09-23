@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0A1020">
+  <title>RoadPass — Akıllı Geçiş. Akıllı Yolculuk.</title>
+  <link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="assets/img/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+
+  <section id="authView" class="auth-shell">
+    <div class="auth-visual">
+      <div class="road-grid"></div>
+      <div class="brand-lockup">
+        <img src="assets/img/logo.svg" alt="RoadPass" class="brand-logo">
+        <div><h1>ROADPASS</h1><p data-i18n="slogan">Akıllı Geçiş. Akıllı Yolculuk.</p></div>
+      </div>
+      <div class="hero-copy">
+        <span class="eyebrow" data-i18n="auth.eyebrow">ARAÇ HAZIRLIK MERKEZİ</span>
+        <h2 data-i18n="auth.heroTitle">Aracınızla ilgili önemli işleri ve yaklaşan masrafları tek merkezden yönetin.</h2>
+        <p data-i18n="auth.heroText">Hazırlık skoru, gider öngörüsü, resmî işlem yönlendirmeleri ve anlaşılır yolculuk bütçesi.</p>
+      </div>
+      <div class="feature-pills">
+        <span data-i18n="auth.pillDashboard">Canlı Dashboard</span>
+        <span data-i18n="auth.pillRoute">Rota Planlama</span>
+        <span data-i18n="auth.pillAi">Akıllı Analiz</span>
+      </div>
+    </div>
+
+    <div class="auth-panel">
+      <div class="auth-card">
+        <div class="auth-tabs">
+          <button class="auth-tab active" data-auth-tab="login" data-i18n="auth.loginTab">Giriş Yap</button>
+          <button class="auth-tab" data-auth-tab="register" data-i18n="auth.registerTab">Kayıt Ol</button>
+        </div>
+        <form id="loginForm" class="auth-form active">
+          <div class="form-heading"><h3 data-i18n="auth.welcome">Tekrar hoş geldiniz</h3><p data-i18n="auth.loginText">RoadPass hesabınıza güvenli şekilde giriş yapın.</p></div>
+          <label><span data-i18n="common.email">E-posta</span><input type="email" name="email" value="demo@roadpass.local" autocomplete="email" required></label>
+          <label><span data-i18n="common.password">Şifre</span><input type="password" name="password" value="Demo1234" autocomplete="current-password" required></label>
+          <div class="form-row between"><label class="check"><input type="checkbox" checked> <span data-i18n="auth.remember">Beni hatırla</span></label><button type="button" class="link-btn" data-i18n="auth.forgot">Şifremi unuttum</button></div>
+          <button type="submit" class="primary-btn wide"><span data-i18n="auth.loginButton">Giriş Yap</span> <span>→</span></button>
+          <div class="demo-note"><strong data-i18n="auth.demoAccount">Demo hesap:</strong> demo@roadpass.local / Demo1234</div>
+        </form>
+        <form id="registerForm" class="auth-form">
+          <div class="form-heading"><h3 data-i18n="auth.join">RoadPass’e katılın</h3><p data-i18n="auth.registerText">Akıllı yolculuk deneyiminizi birkaç adımda başlatın.</p></div>
+          <label><span data-i18n="common.fullName">Ad Soyad</span><input type="text" name="name" data-i18n-placeholder="common.fullNamePlaceholder" placeholder="Adınız Soyadınız" required minlength="3"></label>
+          <label><span data-i18n="common.phone">Telefon</span><input type="tel" name="phone" placeholder="05xx xxx xx xx"></label>
+          <label><span data-i18n="common.email">E-posta</span><input type="email" name="email" placeholder="ornek@mail.com" required></label>
+          <label><span data-i18n="common.password">Şifre</span><input type="password" name="password" data-i18n-placeholder="auth.passwordPlaceholder" placeholder="En az 8 karakter" required minlength="8"></label>
+          <button type="submit" class="primary-btn wide"><span data-i18n="auth.createAccount">Hesap Oluştur</span> <span>→</span></button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <div id="appView" class="app-shell hidden">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand"><img src="assets/img/logo.svg" alt=""><div><strong>ROADPASS</strong><small data-i18n="sidebar.smartJourney">Akıllı Yolculuk</small></div></div>
+      <nav class="main-nav">
+        <button class="nav-item active" data-page="dashboard"><span>⌂</span><b data-i18n="nav.dashboard">Dashboard</b></button>
+        <button class="nav-item" data-page="wallet"><span>₺</span><b data-i18n="nav.wallet">HGS Cüzdanım</b></button>
+        <button class="nav-item" data-page="vehicles"><span>🚗</span><b data-i18n="nav.vehicles">Araçlarım</b></button>
+        <button class="nav-item" data-page="history"><span>↺</span><b data-i18n="nav.history">Geçiş Geçmişi</b></button>
+        <button class="nav-item" data-page="route"><span>⌖</span><b data-i18n="nav.route">Yolculuk Planla</b></button>
+        <button class="nav-item" data-page="assistant"><span>✦</span><b data-i18n="nav.assistant">AI Asistan</b></button>
+        <button class="nav-item" data-page="notifications"><span>♢</span><b data-i18n="nav.notifications">Bildirimler</b><em id="navNotificationBadge" class="nav-badge">0</em></button>
+      </nav>
+      <div class="sidebar-bottom">
+        <button class="nav-item" data-page="help"><span>?</span><b data-i18n="nav.help">Yardım & Destek</b></button>
+        <button class="nav-item" data-page="profile"><span>⚙</span><b data-i18n="nav.profile">Profil & Ayarlar</b></button>
+        <button class="premium-box premium-button" data-page="premium"><span>PRO</span><strong>RoadPass Premium</strong><p data-i18n="premium.sidebarText">Gelişmiş AI, tam geçmiş ve daha fazla araç.</p></button>
+        <button id="logoutBtn" class="logout-btn"><span data-i18n="nav.logout">↪ Çıkış Yap</span></button>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <button id="menuBtn" class="icon-btn menu-btn" aria-label="Menü">☰</button>
+        <div class="topbar-title"><span id="pageEyebrow">GENEL BAKIŞ</span><h1 id="pageTitle">Dashboard</h1></div>
+        <div class="topbar-actions">
+          <button id="explainPageBtn" class="icon-btn explain-btn" aria-label="Bu bölüm ne işe yarar?" title="Bu bölüm ne işe yarar?">?</button>
+          <button class="balance-chip" data-page-shortcut="wallet"><span class="pulse-dot"></span><div><small data-i18n="dashboard.totalBalance">Toplam Bakiye</small><strong id="headerBalance">—</strong></div></button>
+          <button class="icon-btn" data-page-shortcut="notifications" aria-label="Bildirimler">🔔<b id="topNotificationBadge">0</b></button>
+          <button class="user-chip" data-page-shortcut="profile"><span id="avatarInitials">RP</span><div><strong id="headerUserName">RoadPass</strong><small id="headerMembership" data-i18n="membership.standard">Standart Üye</small></div></button>
+        </div>
+      </header>
+      <section id="pageContent" class="page-content"></section>
+    </main>
+  </div>
+
+  <div id="modal" class="modal-backdrop hidden" role="dialog" aria-modal="true">
+    <div class="modal-card"><button id="modalClose" class="modal-close">×</button><div id="modalContent"></div></div>
+  </div>
+
+  <script src="assets/js/translations/tr.js"></script>
+  <script src="assets/js/translations/en.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

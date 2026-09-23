@@ -1,0 +1,6 @@
+Options -Indexes
+
+# Yalnızca JSON API giriş noktası web üzerinden çağrılabilir.
+<FilesMatch "^(?!api\.php$).+\.php$">
+  Require all denied
+</FilesMatch>
